@@ -1,4 +1,4 @@
-//creating function the demographic info
+//function the demographic info
 function demographic(demoInfo){
     d3.json("samples.json").then((data)=> {
         var metadata = data.metadata;
@@ -16,7 +16,7 @@ function demographic(demoInfo){
     });
 };
 
-//create function for all plots
+//function for all plots
 function plots(demoInfo) {
     d3.json("samples.json").then((data)=> {
         //console.log(data)
@@ -29,17 +29,17 @@ function plots(demoInfo) {
         // filter samples values by id 
         var samples = data.samples.filter(sample => sample.id.toString() === demoInfo)[0];
   
-        // getting top 10 sample values
+        // top 10 sample values
         var sampleValues = samples.sample_values.slice(0, 10).reverse();
         console.log("top 10 sample: " + sampleValues);
   
-        // get only top 10 otu ids for the plot 
+        // top 10 otu ids 
         var otu = (samples.otu_ids.slice(0, 10)).reverse();
         var otu_id = otu.map(no => "OTU " + no)
         console.log("OTU IDS: " + otu_id);
   
   
-        // getting top 10 labels the plot
+        // labels
         var labels = samples.otu_labels.slice(0, 10).reverse();
         console.log("labels: " + labels);
   
@@ -79,7 +79,7 @@ function plots(demoInfo) {
   
         Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
   
-        // Bonus: Guage chart
+        // bonus: guage chart
         var gaugeChart = [
           {
           domain: { x: [0, 1], y: [0, 1] },
