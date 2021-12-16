@@ -6,10 +6,8 @@ function demographic(demoInfo){
 
         // filter demo info data by id
         var resultarray = metadata.filter(info => info.id.toString() === demoInfo)[0];
-
         var panelData = d3.select("#sample-metadata");
 
-        // empty the demo info panel each time before getting new data
         panelData.html("");
 
         Object.entries(resultarray).forEach((key) => {
@@ -45,7 +43,7 @@ function plots(demoInfo) {
         var labels = samples.otu_labels.slice(0, 10).reverse();
         console.log("labels: " + labels);
   
-        // create a bar chart
+        // bar chart
         var barChart = {
             x: sampleValues,
             y: otu_id,
@@ -54,13 +52,11 @@ function plots(demoInfo) {
             orientation: "h",
         };
   
-        // create a bar chart data variable
         var barData = [barChart];
   
-        // show the bar plot
         Plotly.newPlot("bar", barData);
       
-        // create a bubble chart
+        // bubble chart
         var bubbleChart = {
             x: samples.otu_ids,
             y: samples.sample_values,
@@ -73,20 +69,17 @@ function plots(demoInfo) {
   
         };
   
-        // set layout for the bubble plot
         var bubbleLayout = {
             xaxis:{title: "OTU ID"},
             height: 550,
             width: 1050
         };
   
-        // creating data variable for bubble chart
         var bubbleData = [bubbleChart];
   
-        // show the bubble plot
         Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
   
-        // Bonus: create guage chart
+        // Bonus: Guage chart
         var gaugeChart = [
           {
           domain: { x: [0, 1], y: [0, 1] },
@@ -127,7 +120,7 @@ function init() {
     //read the data
     d3.json("samples.json").then((data)=> {
 
-        //get the name id to the dropdown menu
+        //get name id to the dropdown
         data.names.forEach((name) => {
             d3
             .select("#selDataset")
